@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="Reservation-web:ear exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Reservation_web_ear_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Reservation-web/javaeeApplication/javaEEApplication" />
+    </root>
+  </artifact>
+</component>

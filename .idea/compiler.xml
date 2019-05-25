@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Reservation-web" target="1.5" />
+      <module name="Reservation-web" target="7" />
     </bytecodeTargetLevel>
   </component>
 </project>
