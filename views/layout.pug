@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        title 공강공강
+        meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
+    body
+        block header
+            include ./includes/header
+        <hr/>
+        block nav
+            include ./includes/nav
+        block hero-unit
+            .jumbortron
+                if flashMessages
+                    each texts, type in flashMessages
+                        .container
+                            .alert.alert-dismissible.fade.show(class=`alert-${type}`)
+                                each msg in texts
+                                    #{msg}
+                                button.close(type='button', data-dismiss='alert', aria-label='close')
+                                span(aria-hidden='true') &times;
+    block content
+
+    block footer
+      include ./includes/footer
