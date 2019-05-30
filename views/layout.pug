@@ -14,7 +14,9 @@ html
             include ./includes/header
         <hr/>
         block nav
-            include ./includes/nav
+            .row.justify-content-center
+                .col-6
+                    include ./includes/nav
         block hero-unit
             .jumbortron
                 if flashMessages
