@@ -2,6 +2,8 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var flash    = require('connect-flash');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 var methodOverride = require('method-override');
@@ -32,8 +34,20 @@ app.use(sassMiddleware({
   indentedSyntax: true, // true = .sass and false = .scss
   sourceMap: true
 }));
+
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'long-long-long-secret-string-1313513tefgwdsvbjkvasd'
+}));
+
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function(req, res, next) {
+  res.locals.flashMessages = req.flash();
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/', usersRouter);
