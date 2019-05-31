@@ -34,6 +34,13 @@ app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 //   indentedSyntax: true, // true = .sass and false = .scss
 //   sourceMap: true
 // }));
+
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'long-long-long-secret-string-1313513tefgwdsvbjkvasd'
+}));
+
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
