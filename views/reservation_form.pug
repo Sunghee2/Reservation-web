@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  .container
+    form(action='/reservation', method='POST')
+        .form-group
+            label(for='name') 이름
+            input.form-control(type='text', id='name', name='name', placeholder='이름을 입력하세요')
+        .form-group
+            label(for='stdID') 학번
+            input.form-control(type='text', id='stdID', name='stdID', placeholder='학번을 입력하세요')
+        .form-group
+            label(for='room') 강의실
+            select#depart.form-control(name='room')
+                option 강의실을 선택해주세요
+                each dp in room
+                    option(value=dp.room_num)= dp.room_num
+        .form-group
+            label(for='date') 날짜
+            input.form-control(type='text', id='date', name='date', placeholder='yyyy-mm-dd 형식으로 입력 하세요')
+        - var time = [['4:00', 4],['5:00', 5],['6:00', 6],['7:00', 7],['8:00', 8]]
+        .form-group
+            label(for='start') 시작시간
+            select#start.form-control(name='start')
+                option 시작시간을 선택해주세요
+                each t in time
+                    option(value=t[1])= t[0]
+        .form-group
+            label(for='end') 종료시간
+            select#end.form-control(name='end')
+                option 종료시간을 선택해주세요
+                each t in time
+                    option(value=t[1])= t[0]
+        - var pp = ['1~3명','4~6명','7~10명','10명 이상']
+        .form-group
+            label(for='numOfPp') 사용 인원 수
+            select#numOfPp.form-control(name='numOfPp')
+                option 인원수을 선택해주세요
+                each p in pp
+                    option(value=p)= p
+            //- input.form-control(type='text', id='numOfPp', name='numOfPp', placeholder='사용 인원 수를 선택하세요')
+        - var purpose = ['동아리', '튜터링', '소모임', '기타']
+        .form-group
+            label(for='purpose') 사용 목적
+            select#purpose.form-control(name='purpose')
+                option 사용목적을 선택해주세요
+                each p in purpose
+                    option(value=p)= p
+            //- input.form-control(type='text', id='name', name='name', placeholder='사용목적을 선택하세요')
+        a.btn.btn-outline-secondary(href='/') 취소
+        | 
+        button.btn.btn-primary(type='submit') 예약

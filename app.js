@@ -6,6 +6,7 @@ var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 var methodOverride = require('method-override');
 var flash = require('connect-flash');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var reservationsRouter = require('./routes/reservations');
