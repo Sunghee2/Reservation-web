@@ -19,15 +19,15 @@ html
             .row.justify-content-center
                 .col-6
                     include ./includes/nav
+        <hr/>
         block hero-unit
-            .jumbortron
-                if flashMessages
-                    each texts, type in flashMessages
-                        .container
-                            .alert.alert-dismissible.fade.show(class=`alert-${type}`)
-                                each msg in texts
-                                    #{msg}
-                                button.close(type='button', data-dismiss='alert', aria-label='close')
+            if flashMessages
+                each texts, type in flashMessages
+                    .container
+                        .alert.alert-dismissible.fade.show(class=`alert-${type}`)
+                            each msg in texts
+                                | #{msg} 
+                            button.close(type='button', data-dismiss='alert', aria-label='close')
                                 span(aria-hidden='true') &times;
     block content
 

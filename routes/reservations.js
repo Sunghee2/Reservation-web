@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
-const conn = mysql.createConnection(require('../config/db-config.js'));
-conn.connect()
+const conn = require('./db');
 
 router.get('/', (req, res, next) => {
     if (req.app.locals.user === null){
