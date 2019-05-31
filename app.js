@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var sassMiddleware = require('node-sass-middleware');
+//var sassMiddleware = require('node-sass-middleware');
 var methodOverride = require('method-override');
 var flash = require('connect-flash');
 var indexRouter = require('./routes/index');
@@ -26,12 +26,12 @@ app.use(cookieParser());
 
 app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 
-app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: true, // true = .sass and false = .scss
-  sourceMap: true
-}));
+// app.use(sassMiddleware({
+//   src: path.join(__dirname, 'public'),
+//   dest: path.join(__dirname, 'public'),
+//   indentedSyntax: true, // true = .sass and false = .scss
+//   sourceMap: true
+// }));
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
