@@ -26,7 +26,7 @@ router.get('/', catchErrors(async (req, res, next) => {
     })}
 ));
 
-router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
+router.get('/:id/detail', needAuth, catchErrors(async (req, res, next) => {
     var sql = 'SELECT * FROM reservation JOIN room ON reservation.room=room.room_num WHERE stdID=? AND reservation.id=?';
     const stdid = req.app.locals.userid;
     const rid = req.params.id;
