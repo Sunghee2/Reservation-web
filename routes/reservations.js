@@ -38,6 +38,11 @@ router.get('/:room_id/:date', needAuth, (req, res, next) => {
     const room_id = req.params.room_id;
     const date = req.params.date;
 
+    if(req.app.locals.moment(Date.now()).format('YYYY-MM-DD') > date) {
+        req.flash('danger', '잘못된 접근입니다.');
+        return res.redirect('back');
+    }
+
     conn.query('SELECT * FROM room WHERE room_num=?', [room_id], (room_err, room_rows, room_field) => {
         console.log(room_rows);
         if(room_rows.length == 0) {
