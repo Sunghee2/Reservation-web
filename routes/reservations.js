@@ -48,29 +48,20 @@ router.get('/:id', (req, res, next) => {
     })
 })
 
-router.get('/dup', (req, res, next) => {
-    var sql = 'SELECT * FROM reservation';
-    conn.query(sql, (err, rows, field) => {
-        const reservations = rows;
-        console.log("rs",reservations);
-        res.json(reservations);
-    })
-})
-
-router.post('/', function(req, res, next){
-    console.log(req.body)
-    conn.query('insert into reservation(name, stdID, room, date, start, \
-        end, people_num, purpose) values (?, ?, ?, ?, ?, ?, ?, ?);',
-        [req.app.locals.username, req.app.locals.userid, req.body.room, req.body.date,
-        req.body.start, req.body.end, req.body.numOfPp, req.body.purpose],
-        function (err, info) {
-            if (err == null){
-                res.redirect('/');
-            } 
-            // else res.redirect('back');
-            else res.status(503).json(err);
-        });
-})
+// router.post('/', function(req, res, next){
+//     console.log(req.body)
+//     conn.query('insert into reservation(name, stdID, room, date, start, \
+//         end, people_num, purpose) values (?, ?, ?, ?, ?, ?, ?, ?);',
+//         [req.app.locals.username, req.app.locals.userid, req.body.room, req.body.date,
+//         req.body.start, req.body.end, req.body.numOfPp, req.body.purpose],
+//         function (err, info) {
+//             if (err == null){
+//                 res.redirect('/');
+//             } 
+//             // else res.redirect('back');
+//             else res.status(503).json(err);
+//         });
+// })
 
 
 
