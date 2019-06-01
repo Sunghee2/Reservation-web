@@ -5,4 +5,10 @@ body {
 a {
   color: #00B7FF; }
 
+.ui-datepicker-trigger {
+   top: 3em ;
+   right: 3em ; 
+   height:3em; 
+}
+
 /*# sourceMappingURL=style.css.map */
