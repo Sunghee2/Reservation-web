@@ -12,7 +12,7 @@ function needAuth(req, res, next) {
     }
 }
 
-router.get('/', catchErrors(async (req, res, next) => {
+router.get('/', needAuth, catchErrors(async (req, res, next) => {
     var sql = 'SELECT * FROM reservation WHERE stdID=?';
     const stdid = req.app.locals.userid;
     conn.query(sql, stdid, (err, rows, field) => {
@@ -27,7 +27,11 @@ router.get('/', catchErrors(async (req, res, next) => {
 ));
 
 router.get('/:id/detail', needAuth, catchErrors(async (req, res, next) => {
+<<<<<<< HEAD
     var sql = 'SELECT * FROM reservation JOIN room ON reservation.room=room.room_num WHERE stdID=? AND reservation.id=?';
+=======
+    var sql = 'SELECT * FROM room JOIN reservation ON reservation.room=room.room_num WHERE stdID=? AND reservation.id=?';
+>>>>>>> 95141c36672322cd68951fb01ba6f134ad1a4635
     const stdid = req.app.locals.userid;
     const rid = req.params.id;
     conn.query(sql, [stdid, rid], (err, rows, field) => {
