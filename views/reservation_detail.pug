@@ -5,7 +5,7 @@ block content
     h3 예약 내역
     br
      
-    if reservations 
+    if myr 
         table.table.table-hover
             thead
                 th 예약 번호
@@ -15,11 +15,8 @@ block content
                 each reservation in reservations
                     tr
                         td
-                            a(href=`reservationlist/${reservation.id}/detail`)= reservation.id
+                            a(href=`reservationlist/${reservation._id}/detail`)= reservation.id
                         td= reservation.room
                         td= reservation.date
     else
-      .alert.alert-info 아직 예약한 내역이 없습니다.
-
-    hr
-    a.btn.btn-primary(href='/reservations') 예약하기
+      .alert.alert-info 이 예약 번호의 예약이 존재하지 않습니다.
