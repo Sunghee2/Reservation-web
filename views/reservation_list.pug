@@ -17,7 +17,7 @@ block content
                         td
                             a(href=`reservationlist/${reservation.id}/detail`)= reservation.id
                         td= reservation.room
-                        td= reservation.date
+                        td= moment(reservation.date).format('YYYY-MM-DD')
     else
       .alert.alert-info 아직 예약한 내역이 없습니다.
 

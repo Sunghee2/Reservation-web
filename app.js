@@ -19,15 +19,6 @@ var app = express();
 app.locals.userid = null
 app.locals.username = null
 
-
-// app.use(function(req, res, next) {
-//   if(res.locals.username == null) {
-//     res.locals.username = null;
-//     res.locals.userid = null;
-//   }
-// });
-
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -57,10 +48,6 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
-  // res.locals.username = null;
-  // res.locals.userid = null;
-  // res.locals.username = req.username;
-  // res.locals.userid = req.userid;
   res.locals.flashMessages = req.flash();
   next();
 });
