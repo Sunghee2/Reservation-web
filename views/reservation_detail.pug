@@ -31,4 +31,9 @@ block content
         .alert.alert-info 이 예약 번호의 예약이 존재하지 않습니다.
 
     hr
-    a.btn.btn-primary(href='/reservations') 수정하기
+    button.btn.btn-secondary(data-toggle='tooltip', data-placement='right' title='수정 기능은 추후 제공 예정입니다.') 수정하기
+
+    script.
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
