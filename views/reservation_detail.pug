@@ -1,4 +1,4 @@
-extends ./layout
+extends layout
 
 block content
   .container
@@ -12,11 +12,11 @@ block content
                 th 강의실 번호
                 th 예약 일시
             tbody
-                each reservation in reservations
+                each reservation in myr
                     tr
                         td
                             a(href=`reservationlist/${reservation._id}/detail`)= reservation.id
                         td= reservation.room
                         td= reservation.date
     else
-      .alert.alert-info 이 예약 번호의 예약이 존재하지 않습니다.
+        .alert.alert-info 이 예약 번호의 예약이 존재하지 않습니다.
