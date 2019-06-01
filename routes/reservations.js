@@ -15,20 +15,20 @@ router.get('/', (req, res, next) => {
             req.flash('danger', err);
             return res.redirect('back');
         }
-        const room = rows[1];
+        const room = rows;
         console.log("room", room);
         res.render('reservations/new_room', {room: room});
     })
 })
 
-router.get('/dup', (req, res, next) => {
-    var sql = 'SELECT * FROM reservation';
-    conn.query(sql, (err, rows, field) => {
-        const reservations = rows;
-        console.log("rs",reservations);
-        res.json(reservations);
-    })
-})
+// router.get('/dup', (req, res, next) => {
+//     var sql = 'SELECT * FROM reservation';
+//     conn.query(sql, (err, rows, field) => {
+//         const reservations = rows;
+//         console.log("rs",reservations);
+//         res.json(reservations);
+//     })
+// })
 
 
 router.get('/:id', (req, res, next) => {
@@ -43,8 +43,8 @@ router.get('/:id', (req, res, next) => {
             req.flash('danger', err);
             return res.redirect('back');
         }
-        const reservations = rows[0];
-        res.render('new_time', {reservations: reservations});
+        const reservations = rows;
+        res.render('reservations/new_time', {reservations: reservations});
     })
 })
 
@@ -62,6 +62,11 @@ router.get('/:id', (req, res, next) => {
 //             else res.status(503).json(err);
 //         });
 // })
+router.post('/', function (req, res, next) {
+    console.log('여긴 오니??', req.body.date, req.body.room)
+    var date = req.body.date
+    res.redirect( {date: date}, `/reservations/${req.body.room}`)
+})
 
 
 
