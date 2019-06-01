@@ -3,12 +3,16 @@ const router = express.Router();
 const mysql = require('mysql');
 const conn = require('./db');
 
-router.get('/', (req, res, next) => {
-    if (req.app.locals.userid === null){
+function needAuth(req, res, next) {
+    if (req.app.locals.userid === null) {
         req.flash('danger', 'Please signin first.');
         return res.redirect('back');
+    } else {
+        next();
     }
+}
 
+router.get('/', needAuth, (req, res, next) => {
     var sql = 'SELECT * FROM room';
     conn.query(sql, (err, rows, field) => {
         if(err) {
@@ -30,35 +34,32 @@ router.get('/dup', (req, res, next) => {
     })
 })
 
-router.get('/:room_id/:date', (req, res, next) => {
-    // if (req.app.locals.userid === null){
-    //     req.flash('danger', 'Please signin first.');
-    //     return res.redirect('back');
-    // }
-
+router.get('/:room_id/:date', needAuth, (req, res, next) => {
     const room_id = req.params.room_id;
     const date = req.params.date;
 
-    // conn.query('SELECT * FROM reservation WHERE room_id=?', [room_id], (err, rows, field) => {
-    //     if(rows == null) {
-    //         req.flash('danger', '잘못된 접근입니다.');
-    //         return res.redirect('back');
-    //     }
-    // });
-
-    conn.query('SELECT * FROM reservation WHERE room=? ORDER BY start', [room_id], (err, rows, field) => {
-        if(err) {
-            req.flash('danger', err);
-            return res.redirect('back');
-        }
-        if(rows == null) {
+    conn.query('SELECT * FROM room WHERE room_num=?', [room_id], (room_err, room_rows, room_field) => {
+        console.log(room_rows);
+        if(room_rows.length == 0) {
+            req.flash('danger', '잘못된 접근입니다.');
+            console.log("test");
             return res.redirect('back');
         }
 
-        const reservations = rows;
+        conn.query('SELECT * FROM reservation WHERE room=? AND date=? ORDER BY start', [room_id, date], (err, rows, field) => {
+            if(err) {
+                req.flash('danger', err);
+                return res.redirect('back');
+            }
+            if(rows == null) {
+                return res.redirect('back');
+            }
 
-        res.render('reservations/new_time', {reservations: reservations, room_id: room_id, date: date});
-    })
+            const reservations = rows;
+
+            res.render('reservations/new_time', {reservations: reservations, room_id: room_id, date: date});
+        })
+    });
 })
 
 router.post('/', function (req, res, next) {
