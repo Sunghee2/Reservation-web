@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
         return res.redirect('back');
     }
 
-    var sql = 'SELECT * FROM reservation; SELECT * FROM room';
+    var sql = 'SELECT * FROM room';
     conn.query(sql, (err, rows, field) => {
         if(err) {
             req.flash('danger', err);
@@ -22,6 +22,24 @@ router.get('/', (req, res, next) => {
         res.render('reservation_form', {room: room, reservations: reservations});
     })
 })
+
+router.get('/:id', (req, res, next) => {
+    if (req.app.locals.userid === null){
+        req.flash('danger', 'Please signin first.');
+        return res.redirect('back');
+    }
+
+    const room_id = req.params.id;
+    conn.query('SELECT * FROM reservation WHERE room=?', [room_id], (err, rows, field) => {
+        if(err) {
+            req.flash('danger', err);
+            return res.redirect('back');
+        }
+        const reservations = rows[0];
+        res.render('reservation_form', {room: room, reservations: reservations});
+    })
+})
+
 router.get('/dup', (req, res, next) => {
     var sql = 'SELECT * FROM reservation';
     conn.query(sql, (err, rows, field) => {
@@ -45,6 +63,7 @@ router.post('/', function(req, res, next){
             else res.status(503).json(err);
         });
 })
+
 
 
 module.exports = router;

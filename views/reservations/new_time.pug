@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  .container
+    form(action='/reservation', method='POST')
+        .form-group
+            label(for='date') 날짜
+            input#datepicker.form-control(name='date', type='text', placeholder='클릭하고, 날짜를 선택하세요')
+        - var time = [['1:00', 1],['2:00', 2],['3:00', 3],['4:00', 4],['5:00', 5],['6:00', 6],['7:00', 7],['8:00', 8]]
+        .form-group
+            label(for='start') 시작시간
+            select#start.form-control(name='start')
+                option 시작시간을 선택해주세요
+                each t in time
+                    option(value=t[1])= t[0]
+        .form-group
+            label(for='end') 종료시간
+            select#end.form-control(name='end')
+                option 종료시간을 선택해주세요
+                each t in time
+                    option(value=t[1])= t[0]
+        - var pp = [['1~3명', 1],['4~6명', 2],['7~10명', 3],['10명 이상', 4]]
+        .form-group
+            label(for='numOfPp') 사용 인원 수
+            select#numOfPp.form-control(name='numOfPp')
+                option 인원수을 선택해주세요
+                each p in pp
+                    option(value=p[1])= p[0]
+            //- input.form-control(type='text', id='numOfPp', name='numOfPp', placeholder='사용 인원 수를 선택하세요')
+        - var purpose = ['동아리', '튜터링', '소모임', '기타']
+        .form-group
+            label(for='purpose') 사용 목적
+            select#purpose.form-control(name='purpose')
+                option 사용목적을 선택해주세요
+                each p in purpose
+                    option(value=p)= p
+            //- input.form-control(type='text', id='name', name='name', placeholder='사용목적을 선택하세요')
+        a.btn.btn-outline-secondary(href='/') 취소
+        | 
+        button#submit.btn.btn-primary(type='submit') 예약
+
+
