@@ -11,7 +11,7 @@ block content
             input.form-control(type='text', id='stdID', name='stdID', placeholder='학번을 입력하세요', value=userid, readonly='')
         .form-group
             label(for='room') 강의실
-            select#depart.form-control(name='room')
+            select#room.form-control(name='room')
                 option 강의실을 선택해주세요
                 each dp in room
                     option(value=dp.room_num)= dp.room_num

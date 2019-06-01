@@ -18,6 +18,17 @@ $(function() {
         if(ed <= st) {
             $('#submit').prop('disabled', true);
             alert("종료시간이 시작시간보다 빠릅니다. 다시 설정하세요")
+        } else{
+            if($("#room option").index($("#room option:selected")) == 0 ||
+            $("#start option").index($("#start option:selected")) == 0 ||
+            $("#end option").index($("#end option:selected")) == 0 ||
+            $("#numOfPp option").index($("#numOfPp option:selected")) == 0 ||
+            $("#datepicker option").index($("#datepicker option:selected")) == ""|| 
+            $("#purpose option").index($("#purpose option:selected")) == 0){
+                $('#submit').prop('disabled', true);    
+            } else {
+                $('#submit').removeAttr("disabled");
+            };
         }
     });
 });

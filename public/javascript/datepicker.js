@@ -1,10 +1,5 @@
 $(function() { 
     $( "#datepicker" ).datepicker({
-        altFormat: "yy-mm-dd"
+        dateFormat: "yy-mm-dd"
     });
-    $('#datepicker').change(function() {
-        var dt = $("#datepicker").val();
-        console.log('dt = ', dt)
-    });
-
 });

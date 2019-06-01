@@ -7,15 +7,15 @@ router.get('/signin', (req, res, next) => {
 
 router.post('/signin/1', (req, res, next) =>  {
     req.app.locals.userid = "60191600";
-    req.app.locals.username = "최리안";
-    req.flash('success', 'Welcome, 최리안!');
+    req.app.locals.username = "최고갱";
+    req.flash('success', 'Welcome, 최고갱!');
     res.redirect('back')
 });
 
 router.post('/signin/2', (req, res, next) =>  {
     req.app.locals.userid = "60191699";
-    req.app.locals.username = "이성희";
-    req.flash('success', 'Welcome, 이성희!');
+    req.app.locals.username = "이유저";
+    req.flash('success', 'Welcome, 이유저!');
     res.redirect('back')
 });
 
