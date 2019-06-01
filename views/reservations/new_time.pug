@@ -1,24 +1,28 @@
-extends layout
+extends ../layout
 
 block content
   .container
-    form(action='/reservation', method='POST')
-        .form-group
-            label(for='date') 날짜
-            input#datepicker.form-control(name='date', type='text', placeholder='클릭하고, 날짜를 선택하세요')
-        - var time = [['1:00', 1],['2:00', 2],['3:00', 3],['4:00', 4],['5:00', 5],['6:00', 6],['7:00', 7],['8:00', 8]]
+    form(action=`/reservations/${room_id}/${date}`, method='POST')
+        - var start_time = [1, 2, 3, 4, 5, 6, 7, 8]
+        - var end_time = []
+        each reservation in reservations
+            each time in start_time
+                if reservation.start <= time && time < reservation.end
+                    - start_time = start_time.filter(e => e != time)
+        each time in start_time
+            - end_time.push(time + 1)
         .form-group
             label(for='start') 시작시간
             select#start.form-control(name='start')
                 option 시작시간을 선택해주세요
-                each t in time
-                    option(value=t[1])= t[0]
+                each t in start_time
+                    option(value=t)= t
         .form-group
             label(for='end') 종료시간
             select#end.form-control(name='end')
                 option 종료시간을 선택해주세요
-                each t in time
-                    option(value=t[1])= t[0]
+                each t in end_time
+                    option(value=t)= t
         - var pp = [['1~3명', 1],['4~6명', 2],['7~10명', 3],['10명 이상', 4]]
         .form-group
             label(for='numOfPp') 사용 인원 수
