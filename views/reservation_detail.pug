@@ -10,11 +10,7 @@ block content
                 th 인원
                 th 목적
             tbody
-<<<<<<< HEAD
-                each reservation in myr
-=======
                 each m in myr
->>>>>>> 95141c36672322cd68951fb01ba6f134ad1a4635
                     tr
                         td.number
                             if m.people_num == 1
@@ -32,11 +28,7 @@ block content
             p #{m.name} 님이 예약한 강의실 #{m.room_num}은 #{m.univ}의 #{m.depart}가 관리하고 있습니다. 문의할 것은 #{m.contact}으로 연락주세요.
 
     else
-<<<<<<< HEAD
-        .alert.alert-info 이 예약 번호의 예약이 존재하지 않습니다.
-=======
         .alert.alert-info 이 예약 번호의 예약이 존재하지 않습니다.
 
     hr
     a.btn.btn-primary(href='/reservations') 수정하기
->>>>>>> 95141c36672322cd68951fb01ba6f134ad1a4635
