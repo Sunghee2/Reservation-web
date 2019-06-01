@@ -5,10 +5,10 @@ block content
     form(action='/reservation', method='POST')
         .form-group
             label(for='name') 이름
-            input.form-control(type='text', id='name', name='name', placeholder='이름을 입력하세요')
+            input.form-control(type='text', id='name', name='name', placeholder='이름을 입력하세요', value=username, readonly='')
         .form-group
             label(for='stdID') 학번
-            input.form-control(type='text', id='stdID', name='stdID', placeholder='학번을 입력하세요')
+            input.form-control(type='text', id='stdID', name='stdID', placeholder='학번을 입력하세요', value=userid, readonly='')
         .form-group
             label(for='room') 강의실
             select#depart.form-control(name='room')

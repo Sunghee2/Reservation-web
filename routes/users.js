@@ -6,19 +6,22 @@ router.get('/signin', (req, res, next) => {
 });
 
 router.post('/signin/1', (req, res, next) =>  {
-    req.app.locals.user = "1";
-    req.flash('success', 'Welcome, User1!');
+    req.app.locals.userid = "60191600";
+    req.app.locals.username = "최리안";
+    req.flash('success', 'Welcome, 최리안!');
     res.redirect('back')
 });
 
 router.post('/signin/2', (req, res, next) =>  {
-    req.app.locals.user = "2";
-    req.flash('success', 'Welcome, User2!');
+    req.app.locals.userid = "60191699";
+    req.app.locals.username = "이성희";
+    req.flash('success', 'Welcome, 이성희!');
     res.redirect('back')
 });
 
 router.get('/signout', (req, res) => {
-    req.app.locals.user = null;
+    req.app.locals.userid = null;
+    req.app.locals.username = null;
     req.flash('success', 'Successfully signed out');
     res.redirect('/')
 })

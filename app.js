@@ -15,7 +15,8 @@ var reservationsRouter = require('./routes/reservations');
 
 var app = express();
 
-app.locals.user = null
+app.locals.userid = null
+app.locals.username = null
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
