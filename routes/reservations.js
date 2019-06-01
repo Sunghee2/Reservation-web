@@ -5,7 +5,7 @@ const conn = require('./db');
 
 router.get('/', (req, res, next) => {
     if (req.app.locals.user === null){
-        // req.flash('danger', 'Please signin first.');
+        req.flash('danger', 'Please signin first.');
         return res.redirect('back');
     }
 
@@ -24,9 +24,10 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', function(req, res, next){
-    conn.query('insert into reservation(name, stdID, room, date, start, \
-        end, people_num, purpose) values (?, ?, ?, ?, ?, ?, ?, ?);',
-        [req.body.name, req.body.stdID, req.body.room, req.body.date,
+    console.log(req.body)
+    conn.query('insert into reservation(user, name, stdID, room, date, start, \
+        end, people_num, purpose) values (?, ?, ?, ?, ?, ?, ?, ?, ?);',
+        [req.app.locals.user, req.body.name, req.body.stdID, req.body.room, req.body.date,
         req.body.start, req.body.end, req.body.numOfPp, req.body.purpose],
         function (err, info) {
             if (err == null){
