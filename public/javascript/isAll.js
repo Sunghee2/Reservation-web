@@ -4,7 +4,7 @@ var isall = function(){
     $("#end option").index($("#end option:selected")) == 0 ||
     $("#numOfPp option").index($("#numOfPp option:selected")) == 0 ||
     $("#purpose option").index($("#purpose option:selected")) == 0 ||
-    $("#datepicker option").val() == " " 
+    $("#datepicker").val() == "" 
     ){
         $('#submit').prop('disabled', true);    
     } else {
@@ -18,4 +18,5 @@ $(function() {
     $('#numOfPp').bind('change', isall);
     $('#purpose').bind('change', isall);
     $('#datepicker').bind('change', isall);
+    console.log($("#datepicker").val())
 });
