@@ -9,8 +9,8 @@ router.get('/', (req, res, next) => {
         return res.redirect('back');
     }
 
-    var sql1 = 'SELECT * FROM reservation; SELECT * FROM room';
-    conn.query(sql1, (err, rows, field) => {
+    var sql = 'SELECT * FROM reservation; SELECT * FROM room';
+    conn.query(sql, (err, rows, field) => {
         if(err) {
             req.flash('danger', err);
             return res.redirect('back');
@@ -20,6 +20,14 @@ router.get('/', (req, res, next) => {
         console.log("rs",reservations);
         console.log("room", room);
         res.render('reservation_form', {room: room, reservations: reservations});
+    })
+})
+router.get('/dup', (req, res, next) => {
+    var sql = 'SELECT * FROM reservation';
+    conn.query(sql, (err, rows, field) => {
+        const reservations = rows;
+        console.log("rs",reservations);
+        res.json(reservations);
     })
 })
 
@@ -37,5 +45,6 @@ router.post('/', function(req, res, next){
             else res.status(503).json(err);
         });
 })
+
 
 module.exports = router;
