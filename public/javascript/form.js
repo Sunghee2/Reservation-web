@@ -1,29 +1,4 @@
 $(function() { 
-    // $.ajax({ 
-    //     type: 'GET',
-    //     url : "/reservations/dup",
-    //     success : function(data) { 
-    //         console.log("여기로 왔다는 것이다~~", data); 
-    //     }
-    // }); 
-
-    // $('#start').prop('disabled', true);
-    // $('#room').change(function() {
-    //     if($("#datepicker").val() != "" ){
-    //         $('#start').removeAttr('disabled');
-    //     }
-    // });
-    // $('#datepicker').change(function() {
-    //     if($("#room option").index($("#room option:selected")) != 0 ){
-    //         $('#start').removeAttr('disabled');
-    //     }
-    // });
-
-    // if($("#datepicker").val() != "" && $("#room option").index($("#room option:selected")) != 0 ) {
-
-    // }
-    
-    // $('#end').prop('disabled', true);
     $('#start').change(function() {
         $('#end').removeAttr('disabled');
         $('#end option').each(function() {
