@@ -1,0 +1,25 @@
+extends ./layout
+
+block content
+  .container
+    h3 예약 내역
+    br
+     
+    if reservations 
+        table.table.table-hover
+            thead
+                th 예약 번호
+                th 강의실 번호
+                th 예약 일시
+            tbody
+                each reservation in reservations
+                    tr
+                        td
+                            a(href=`${reservation._id}/detail`)= reservation.id
+                        td= reservation.room
+                        td= reservation.date
+    else
+      .alert.alert-info 아직 예약한 내역이 없습니다.
+
+    hr
+    a.btn.btn-primary(href='/reservations') 예약하기
