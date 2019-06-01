@@ -25,15 +25,6 @@ router.get('/', needAuth, (req, res, next) => {
     })
 })
 
-router.get('/dup', (req, res, next) => {
-    var sql = 'SELECT * FROM reservation';
-    conn.query(sql, (err, rows, field) => {
-        const reservations = rows;
-        console.log("rs",reservations);
-        res.json(reservations);
-    })
-})
-
 router.get('/:room_id/:date', needAuth, (req, res, next) => {
     const room_id = req.params.room_id;
     const date = req.params.date;
@@ -68,9 +59,9 @@ router.get('/:room_id/:date', needAuth, (req, res, next) => {
 })
 
 router.post('/', function (req, res, next) {
-    console.log('여긴 오니??', req.body.date, req.body.room)
+    var room = req.body.room
     var date = req.body.date
-    res.redirect(`/reservations/${req.body.room}/${date}`)
+    res.redirect(`/reservations/${room}/${date}`)
 })
 
 router.post('/:room_id/:date', function(req, res, next){
