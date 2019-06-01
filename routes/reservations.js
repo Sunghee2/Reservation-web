@@ -15,13 +15,21 @@ router.get('/', (req, res, next) => {
             req.flash('danger', err);
             return res.redirect('back');
         }
-        const reservations = rows[0];
         const room = rows[1];
-        console.log("rs",reservations);
         console.log("room", room);
-        res.render('reservation_form', {room: room, reservations: reservations});
+        res.render('reservations/new_room', {room: room});
     })
 })
+
+router.get('/dup', (req, res, next) => {
+    var sql = 'SELECT * FROM reservation';
+    conn.query(sql, (err, rows, field) => {
+        const reservations = rows;
+        console.log("rs",reservations);
+        res.json(reservations);
+    })
+})
+
 
 router.get('/:id', (req, res, next) => {
     if (req.app.locals.userid === null){
@@ -30,13 +38,13 @@ router.get('/:id', (req, res, next) => {
     }
 
     const room_id = req.params.id;
-    conn.query('SELECT * FROM reservation WHERE room=?', [room_id], (err, rows, field) => {
+    conn.query('SELECT * FROM reservation WHERE room=? ORDER BY start', [room_id], (err, rows, field) => {
         if(err) {
             req.flash('danger', err);
             return res.redirect('back');
         }
         const reservations = rows[0];
-        res.render('reservation_form', {room: room, reservations: reservations});
+        res.render('new_time', {reservations: reservations});
     })
 })
 

@@ -53,7 +53,7 @@ app.use(function(req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/', usersRouter);
-app.use('/reservation', reservationsRouter);
+app.use('/reservations', reservationsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -68,6 +68,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  console.log(err.message);
   res.render('error');
 });
 
