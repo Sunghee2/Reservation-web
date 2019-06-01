@@ -7,23 +7,23 @@ $(function() {
     //     }
     // }); 
 
-    $('#start').prop('disabled', true);
-    $('#room').change(function() {
-        if($("#datepicker").val() != "" ){
-            $('#start').removeAttr('disabled');
-        }
-    });
-    $('#datepicker').change(function() {
-        if($("#room option").index($("#room option:selected")) != 0 ){
-            $('#start').removeAttr('disabled');
-        }
-    });
+    // $('#start').prop('disabled', true);
+    // $('#room').change(function() {
+    //     if($("#datepicker").val() != "" ){
+    //         $('#start').removeAttr('disabled');
+    //     }
+    // });
+    // $('#datepicker').change(function() {
+    //     if($("#room option").index($("#room option:selected")) != 0 ){
+    //         $('#start').removeAttr('disabled');
+    //     }
+    // });
 
-    if($("#datepicker").val() != "" && $("#room option").index($("#room option:selected")) != 0 ) {
+    // if($("#datepicker").val() != "" && $("#room option").index($("#room option:selected")) != 0 ) {
 
-    }
+    // }
     
-    $('#end').prop('disabled', true);
+    // $('#end').prop('disabled', true);
     $('#start').change(function() {
         $('#end').removeAttr('disabled');
         $('#end option').each(function() {
@@ -47,7 +47,7 @@ $(function() {
             $("#numOfPp option").index($("#numOfPp option:selected")) == 0 ||
             $("#datepicker").val() == ""|| 
             $("#purpose option").index($("#purpose option:selected")) == 0){
-                $('#submit').prop('disabled', true);    
+                // $('#submit').prop('disabled', true);    
             } else {
                 $('#submit').removeAttr("disabled");
             };
