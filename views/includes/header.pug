@@ -4,7 +4,7 @@ header.blog-header.py-3
         .col-8.text-center
             h3.text-dark(href='/') 명지대학교 강의실 예약
         .col-2
-            if(user == null) 
+            if(userid == null) 
                 a.btn.btn-outline-secondary(href='/signin', data-toggle='modal', data-target='#signinModal') 로그인
                 include ../signin.pug
             else 
