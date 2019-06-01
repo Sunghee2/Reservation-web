@@ -1,7 +1,7 @@
 $(function() { 
     $.ajax({ 
         type: 'GET',
-        url : "/reservation/dup",
+        url : "/reservations/dup",
         success : function(data) { 
             console.log("여기로 왔다는 것이다~~", data); 
         }
